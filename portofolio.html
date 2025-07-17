@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Portfolio Atha - Praktik JavaScript</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Global / Reset --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6; /* Warna background mirip video */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Header / Navbar --- */
+        .header {
+            background-color: #2c3e50; /* Warna gelap header */
+            color: #ecf0f1;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ecf0f1;
+            text-decoration: none;
+        }
+
+        .nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav ul li {
+            margin-left: 25px;
+        }
+
+        .nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav ul li a:hover {
+            color: #3498db; /* Warna hover */
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background-color: #3498db; /* Biru cerah */
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #2ecc71; /* Hijau */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #27ae60;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            background-color: #ffffff;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* --- Code Block Styling --- */
+        pre {
+            background-color: #282c34; /* Warna background code block */
+            color: #abb2bf; /* Warna teks code */
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-top: 20px;
+            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+            color: #e06c75; /* Contoh warna untuk keyword */
+        }
+
+        .code-comment {
+            color: #5c6370; /* Warna komentar */
+        }
+
+        .code-keyword {
+            color: #c678dd;
+        }
+        .code-string {
+            color: #98c379;
+        }
+        .code-number {
+            color: #d19a66;
+        }
+        .code-boolean {
+            color: #d19a66;
+        }
+        .code-variable {
+            color: #e6c07b;
+        }
+        .code-function {
+            color: #61afef;
+        }
+        .code-property {
+            color: #56b6c2;
+        }
+
+        /* --- Table Styling --- */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .comparison-table td strong {
+            color: #2c3e50;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav ul li {
+                margin: 5px 10px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">&lt;JS Portofolio Atha&gt;</a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#extensions">Extensions</a></li>
+                    <li><a href="#statement">Statement</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#datatypes">Data Types</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Portfolio JavaScript Atha</h1>
+                <p>Dokumentasi pembelajaran JavaScript fundamental.</p>
+                <a href="#statement" class="btn">Mulai Eksplorasi</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="section" id="extensions">
+                <h2>1. Pengaturan Ekstensi Visual Studio Code (VS Code)</h2>
+                <p>Untuk memulai, pastikan Anda sudah menginstal <strong>Visual Studio Code (VS Code)</strong>. VS Code adalah <em>code editor</em> populer yang akan sangat membantu dalam menulis dan mengelola kode JavaScript Anda.</p>
+                <p>Berikut adalah ekstensi VS Code yang sangat direkomendasikan untuk pengembangan JavaScript:</p>
+                <ul>
+                    <li><strong>Prettier - Code formatter</strong>: Ini akan <strong>merapikan kode</strong> Anda secara otomatis, memastikan kode Anda selalu terlihat bersih dan profesional.</li>
+                    <li><strong>ESLint</strong>: Ini seperti <strong>asisten pribadi</strong> yang memeriksa kode JavaScript Anda untuk mencari potensi masalah, kesalahan, atau pelanggaran gaya penulisan kode.</li>
+                    <li><strong>Live Server</strong>: Berguna untuk <strong>melihat hasil file HTML/CSS/JavaScript Anda langsung di <em>browser</em></strong>. Anda tidak perlu me-refresh halaman secara manual.</li>
+                    <li><strong>JavaScript (ES6) code snippets</strong>: Ekstensi ini menyediakan <strong>potongan-potongan kode JavaScript yang sering digunakan</strong>. Ini akan mempercepat penulisan kode Anda.</li>
+                </ul>
+                <p><strong>Cara menginstal ekstensi:</strong></p>
+                <ol>
+                    <li>Buka <strong>VS Code</strong>.</li>
+                    <li>Klik ikon <strong>Extensions</strong> di sidebar kiri (terlihat seperti empat kotak kecil).</li>
+                    <li>Di kolom pencarian, ketik nama ekstensi (misalnya: "Prettier").</li>
+                    <li>Klik tombol <strong>Install</strong> di samping nama ekstensi yang muncul.</li>
+                </ol>
+                <p class="code-comment">// (Tidak ada kode JavaScript untuk bagian ini, ini adalah instruksi pengaturan di VS Code)</p>
+            </section>
+
+            <section class="section" id="statement">
+                <h2>2. Praktik Pembuatan Statement</h2>
+                <p>Nama saya adalah Athaillah Rizki Syandana</p>
+                <pre><code class="language-js">
+<span class="code-comment">// --- Praktik Pembuatan Statement ---</span>
+
+<span class="code-comment">// Statement perkenalan</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">"Nama saya adalah Athaillah Rizki Syandana"</span>);
+
+<span class="code-comment">// Statement dengan variabel (template literal)</span>
+<span class="code-keyword">const</span> <span class="code-variable">nama</span> = <span class="code-string">"Athaillah Rizki Syandana"</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Halo, nama saya adalah ${nama}`</span>);
+
+<span class="code-comment">// Output di konsol:</span>
+<span class="code-comment">// Nama saya adalah Athaillah Rizki Syandana</span>
+<span class="code-comment">// Halo, nama saya adalah Athaillah Rizki Syandana</span>
+</code></pre>
+
+                <h3>Deskripsi tentang JavaScript</h3>
+                <p><strong>JavaScript</strong> adalah bahasa pemrograman yang sangat fleksibel dan super populer. Awalnya, JavaScript diciptakan untuk membuat halaman web jadi lebih hidup dan interaktif.</p>
+                <p>Namun, sekarang JavaScript sudah jauh lebih dari itu. Bahasa ini digunakan di berbagai platform, seperti:</p>
+                <ul>
+                    <li><strong>Versatility</strong>: Dapat digunakan untuk <em>front-end</em>, <em>back-end</em>, dan pengembangan <em>mobile</em>.</li>
+                    <li><strong>Ecosystem</strong>: Memiliki ekosistem yang sangat besar dengan berbagai <em>framework</em> (React, Angular, Vue).</li>
+                    <li><strong>Job Market</strong>: Permintaan pengembang JavaScript sangat tinggi di industri teknologi.</li>
+                    <li><strong>Easy to Learn</strong>: Sintaks yang relatif mudah dipahami untuk pemula.</li>
+                    <li><strong>Real Time Development</strong>: Mendukung pengembangan aplikasi <em>real-time</em> modern.</li>
+                </ul>
+                <pre><code class="language-js">
+<span class="code-comment">// --- Contoh Statement Deskripsi JavaScript ---</span>
+
+<span class="code-keyword">const</span> <span class="code-variable">alasanBelajarJS</span> = [
+    <span class="code-string">"Bahasa pemrograman paling populer di dunia"</span>,
+    <span class="code-string">"Dapat membuat aplikasi web interaktif"</span>,
+    <span class="code-string">"Karier yang menjanjikan sebagai developer"</span>,
+    <span class="code-string">"Komunitas yang besar dan supportif"</span>
+];
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">"Mengapa harus belajar JavaScript?"</span>);
+<span class="code-variable">alasanBelajarJS</span>.<span class="code-function">forEach</span>((<span class="code-variable">alasan</span>, <span class="code-variable">index</span>) => {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`  ${index + 1}. ${alasan}`</span>);
+});
+</code></pre>
+            </section>
+<section class="section" id="variables">
+                <h2>3. Praktik Pembuatan Variabel</h2>
+                <h3>Apa persamaan dan perbedaan <code>let</code>, <code>const</code>, dan <code>var</code>?</h3>
+                <p>Di JavaScript, <code>var</code>, <code>let</code>, dan <code>const</code> adalah kata kunci yang kita gunakan untuk <strong>mendeklarasikan variabel</strong>. Ketiganya punya aturan main yang berbeda dalam hal <strong>cakupan (scope)</strong> dan <strong>kemampuan untuk diubah (mutability)</strong>.</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Fitur / Kata Kunci</th>
+                            <th><code>var</code></th>
+                            <th><code>let</code></th>
+                            <th><code>const</code></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cakupan (Scope)</strong></td>
+                            <td><strong>Function-scoped</strong></td>
+                            <td><strong>Block-scoped</strong></td>
+                            <td><strong>Block-scoped</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Redeklarasi</strong></td>
+                            <td><strong>Bisa</strong> (dideklarasikan ulang)</td>
+                            <td><strong>Tidak bisa</strong> (akan error)</td>
+                            <td><strong>Tidak bisa</strong> (akan error)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reassign (Ubah Nilai)</strong></td>
+                            <td><strong>Bisa</strong> (nilai bisa diubah)</td>
+                            <td><strong>Bisa</strong> (nilai bisa diubah)</td>
+                            <td><strong>Tidak bisa</strong> (nilai harus tetap)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hoisting</strong></td>
+                            <td>Di-<em>hoist</em> & inisialisasi <code>undefined</code></td>
+                            <td>Di-<em>hoist</em> tapi tidak diinisialisasi</td>
+                            <td>Di-<em>hoist</em> tapi tidak diinisialisasi</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Praktikkan Contoh Penggunaan Variabel Tersebut</h3>
+
+                <h4>Contoh Penggunaan <code>var</code> (Sebaiknya Dihindari)</h4>
+                <pre><code class="language-js">
+<span class="code-comment">// Deklarasi dan inisialisasi</span>
+<span class="code-keyword">var</span> <span class="code-variable">namaDepan</span> = <span class="code-string">"Amay"</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`var namaDepan (awal): ${namaDepan}`</span>); <span class="code-comment">// Output: var namaDepan (awal): Amay</span>
+
+<span class="code-comment">// Reassign (ubah nilai) diizinkan</span>
+<span class="code-variable">namaDepan</span> = <span class="code-string">"Marvel"</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`var namaDepan (reassign): ${namaDepan}`</span>); <span class="code-comment">// Output: var namaDepan (reassign): Marvel</span>
+
+<span class="code-comment">// Redeklarasi diizinkan (ini bisa jadi sumber bug!)</span>
+<span class="code-keyword">var</span> <span class="code-variable">namaDepan</span> = <span class="code-string">"Akbar"</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`var namaDepan (redeklarasi): ${namaDepan}`</span>); <span class="code-comment">// Output: var namaDepan (redeklarasi): Akbar</span>
+
+<span class="code-comment">// Contoh function-scoped:</span>
+<span class="code-keyword">if</span> (<span class="code-boolean">true</span>) {
+  <span class="code-keyword">var</span> <span class="code-variable">jumlahProduk</span> = <span class="code-number">50</span>;
+}
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`var jumlahProduk di luar blok: ${jumlahProduk}`</span>); <span class="code-comment">// Output: var jumlahProduk di luar blok: 50</span>
+<span class="code-comment">// Variabel 'jumlahProduk' masih bisa diakses di luar blok 'if' karena 'var' bersifat function-scoped.</span>
+</code></pre>
+
+                <h4>Contoh Penggunaan <code>let</code></h4>
+                <pre><code class="language-js">
+<span class="code-comment">// Deklarasi dan inisialisasi</span>
+<span class="code-keyword">let</span> <span class="code-variable">suhu</span> = <span class="code-number">28</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`let suhu (awal): ${suhu}`</span>); <span class="code-comment">// Output: let suhu (awal): 28</span>
+
+<span class="code-comment">// Reassign (ubah nilai) diizinkan</span>
+<span class="code-variable">suhu</span> = <span class="code-number">30</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`let suhu (reassign): ${suhu}`</span>); <span class="code-comment">// Output: let suhu (reassign): 30</span>
+
+<span class="code-comment">// Redeklarasi TIDAK diizinkan (akan menimbulkan error)</span>
+<span class="code-comment">// let suhu = 25; // ERROR: Cannot redeclare block-scoped variable 'suhu'.</span>
+<span class="code-comment">// console.log(suhu);</span>
+
+<span class="code-comment">// Contoh block-scoped:</span>
+<span class="code-keyword">if</span> (<span class="code-boolean">true</span>) {
+  <span class="code-keyword">let</span> <span class="code-variable">nilaiLetBlok</span> = <span class="code-number">123</span>;
+  <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`let nilaiLetBlok di dalam blok: ${nilaiLetBlok}`</span>); <span class="code-comment">// Output: let nilaiLetBlok di dalam blok: 123</span>
+}
+<span class="code-comment">// console.log(`let nilaiLetBlok di luar blok: ${nilaiLetBlok}`); // ERROR: nilaiLetBlok is not defined</span>
+<span class="code-comment">// Variabel 'nilaiLetBlok' hanya bisa diakses di dalam blok 'if' karena 'let' bersifat block-scoped.</span>
+</code></pre>
+
+                <h4>Contoh Penggunaan <code>const</code></h4>
+                <pre><code class="language-js">
+<span class="code-comment">// Deklarasi dan inisialisasi (wajib langsung diberi nilai)</span>
+<span class="code-keyword">const</span> <span class="code-variable">PI_VALUE</span> = <span class="code-number">3.14159</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`const PI_VALUE (awal): ${PI_VALUE}`</span>); <span class="code-comment">// Output: const PI_VALUE (awal): 3.14159</span>
+
+<span class="code-comment">// Reassign TIDAK diizinkan (akan menimbulkan error)</span>
+<span class="code-comment">// PI_VALUE = 3.14; // ERROR: Assignment to constant variable.</span>
+<span class="code-comment">// console.log(PI_VALUE);</span>
+
+<span class="code-comment">// Redeklarasi TIDAK diizinkan (akan menimbulkan error)</span>
+<span class="code-comment">// const PI_VALUE = 22/7; // ERROR: Cannot redeclare block-scoped variable 'PI_VALUE'.</span>
+<span class="code-comment">// console.log(PI_VALUE);</span>
+
+<span class="code-comment">// Contoh dengan objek (properti objek bisa diubah)</span>
+<span class="code-keyword">const</span> <span class="code-variable">itemKeranjang</span> = {
+  <span class="code-property">nama</span>: <span class="code-string">"Baju Kaos"</span>,
+  <span class="code-property">jumlah</span>: <span class="code-number">2</span>,
+  <span class="code-property">harga</span>: <span class="code-number">75000</span>
+};
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`const itemKeranjang (awal):`</span>, <span class="code-variable">itemKeranjang</span>); <span class="code-comment">// Output: { nama: 'Baju Kaos', jumlah: 2, harga: 75000 }</span>
+
+<span class="code-variable">itemKeranjang</span>.<span class="code-property">jumlah</span> = <span class="code-number">3</span>; <span class="code-comment">// Properti objek 'jumlah' bisa diubah</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`const itemKeranjang (jumlah diubah):`</span>, <span class="code-variable">itemKeranjang</span>); <span class="code-comment">// Output: { nama: 'Baju Kaos', jumlah: 3, harga: 75000 }</span>
+
+<span class="code-comment">// Mengganti seluruh objek TIDAK diizinkan</span>
+<span class="code-comment">// itemKeranjang = { nama: "Celana", jumlah: 1, harga: 150000 }; // ERROR: Assignment to constant variable.</span>
+<span class="code-comment">// console.log(itemKeranjang);</span>
+</code></pre>
+            </section>
+            
+
+<section class="section" id="datatypes">
+                <h2>4. Praktik Pembuatan Tipe Data</h2>
+
+                <h3>Tipe Data Primitif (Nilai Dasar)</h3>
+                <p>Tipe data primitif adalah bentuk data paling dasar dalam JavaScript yang merepresentasikan satu nilai tunggal dan tidak memiliki properti atau metode.</p>
+
+                <h4>Tipe Data: String (Teks)</h4>
+                <p>Digunakan untuk menyimpan teks atau rangkaian karakter.</p>
+                <pre><code class="language-js">
+<span class="code-comment">// Menggunakan double quotes</span>
+<span class="code-keyword">let</span> <span class="code-variable">namaProduk</span> = <span class="code-string">"Laptop Gaming"</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Nama Produk: ${namaProduk}`</span>); <span class="code-comment">// Output: Nama Produk: Laptop Gaming</span>
+
+<span class="code-comment">// Menggunakan single quotes</span>
+<span class="code-keyword">let</span> <span class="code-variable">deskripsiSingkat</span> = <span class="code-string">'Kuat dan Cepat!'</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Deskripsi: ${deskripsiSingkat}`</span>); <span class="code-comment">// Output: Deskripsi: Kuat dan Cepat!</span>
+
+<span class="code-comment">// Menggunakan backticks (Template Literals) untuk embedding variabel</span>
+<span class="code-keyword">const</span> <span class="code-variable">merek</span> = <span class="code-string">"ASUS"</span>;
+<span class="code-keyword">let</span> <span class="code-variable">pesanLengkap</span> = <span class="code-string">`Produk ${namaProduk} dari ${merek} sangat ${deskripsiSingkat.toLowerCase()}.`</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Pesan Lengkap: ${pesanLengkap}`</span>);
+<span class="code-comment">// Output: Produk Laptop Gaming dari ASUS sangat kuat dan cepat!.</span>
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Tipe data namaProduk: ${typeof namaProduk}`</span>); <span class="code-comment">// Output: string</span>
+                </code></pre>
+
+                <h4>Tipe Data: Number (Angka)</h4>
+                <p>Digunakan untuk menyimpan nilai numerik, baik bilangan bulat maupun desimal.</p>
+                <pre><code class="language-js">
+<span class="code-comment">// Bilangan bulat (Integer)</span>
+<span class="code-keyword">let</span> <span class="code-variable">jumlahPengguna</span> = <span class="code-number">12345</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Jumlah Pengguna: ${jumlahPengguna}`</span>); <span class="code-comment">// Output: Jumlah Pengguna: 12345</span>
+
+<span class="code-comment">// Bilangan desimal (Float)</span>
+<span class="code-keyword">let</span> <span class="code-variable">ratingBintang</span> = <span class="code-number">4.7</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Rating Bintang: ${ratingBintang}`</span>); <span class="code-comment">// Output: Rating Bintang: 4.7</span>
+
+<span class="code-comment">// Operasi matematika</span>
+<span class="code-keyword">let</span> <span class="code-variable">hargaSatuan</span> = <span class="code-number">150000</span>;
+<span class="code-keyword">let</span> <span class="code-variable">kuantitas</span> = <span class="code-number">3</span>;
+<span class="code-keyword">let</span> <span class="code-variable">totalPembayaran</span> = <span class="code-variable">hargaSatuan</span> * <span class="code-variable">kuantitas</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Total Pembayaran: Rp${totalPembayaran}`</span>); <span class="code-comment">// Output: Total Pembayaran: Rp450000</span>
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Tipe data totalPembayaran: ${typeof totalPembayaran}`</span>); <span class="code-comment">// Output: number</span>
+                </code></pre>
+
+                <h4>Tipe Data: Boolean (Benar atau Salah)</h4>
+                <p>Digunakan untuk menyimpan nilai logika, yaitu <code>true</code> atau <code>false</code>.</p>
+                <pre><code class="language-js">
+<span class="code-comment">// Nilai true</span>
+<span class="code-keyword">let</span> <span class="code-variable">isLoggedIn</span> = <span class="code-boolean">true</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Pengguna sudah login? ${isLoggedIn}`</span>); <span class="code-comment">// Output: Pengguna sudah login? true</span>
+
+<span class="code-comment">// Nilai false</span>
+<span class="code-keyword">let</span> <span class="code-variable">isAdmin</span> = <span class="code-boolean">false</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Pengguna adalah admin? ${isAdmin}`</span>); <span class="code-comment">// Output: Pengguna adalah admin? false</span>
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Tipe data isLoggedIn: ${typeof isLoggedIn}`</span>); <span class="code-comment">// Output: boolean</span>
+                </code></pre>
+
+                <h3 style="margin-top: 50px;">Tipe Data Non-Primitif / Objek (Nilai Kompleks)</h3>
+                <p>Tipe data non-primitif (atau objek) digunakan untuk menyimpan koleksi data yang lebih kompleks, seringkali berupa pasangan <em>key-value</em> atau daftar item.</p>
+
+                <h4>Tipe Data: Array (Daftar)</h4>
+                <p>Digunakan untuk menyimpan koleksi item yang berurutan, bisa berisi berbagai tipe data.</p>
+                <pre><code class="language-js">
+<span class="code-comment">// Array daftar buah</span>
+<span class="code-keyword">let</span> <span class="code-variable">daftarBuah</span> = [<span class="code-string">"Apel"</span>, <span class="code-string">"Pisang"</span>, <span class="code-string">"Ceri"</span>];
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Daftar Buah: ${daftarBuah.join(', ')}`</span>); <span class="code-comment">// Output: Daftar Buah: Apel, Pisang, Ceri</span>
+
+<span class="code-comment">// Mengakses elemen array berdasarkan indeks (mulai dari 0)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Buah pertama: ${daftarBuah[0]}`</span>); <span class="code-comment">// Output: Buah pertama: Apel</span>
+
+<span class="code-comment">// Array dengan tipe data campuran</span>
+<span class="code-keyword">let</span> <span class="code-variable">campuranData</span> = [<span class="code-string">"Text"</span>, <span class="code-number">123</span>, <span class="code-boolean">true</span>];
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Data Campuran: ${campuranData}`</span>); <span class="code-comment">// Output: Data Campuran: Text,123,true</span>
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Tipe data daftarBuah: ${typeof daftarBuah}`</span>); <span class="code-comment">// Output: object (array secara teknis adalah object)</span>
+                </code></pre>
+
+                <h4>Tipe Data: Object (Objek)</h4>
+                <p>Digunakan untuk menyimpan koleksi pasangan <em>key-value</em> (properti dan nilainya).</p>
+                <pre><code class="language-js">
+<span class="code-comment">// Objek data pengguna</span>
+<span class="code-keyword">let</span> <span class="code-variable">dataPengguna</span> = {
+    <span class="code-property">nama</span>: <span class="code-string">"Fitriani"</span>,
+    <span class="code-property">umur</span>: <span class="code-number">24</span>,
+    <span class="code-property">isAktif</span>: <span class="code-boolean">true</span>
+};
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Data Pengguna: ${JSON.stringify(dataPengguna)}`</span>);
+<span class="code-comment">// Output: Data Pengguna: {"nama":"Fitriani","umur":24,"isAktif":true}</span>
+
+<span class="code-comment">// Mengakses properti objek</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Nama Pengguna: ${dataPengguna.nama}`</span>); <span class="code-comment">// Output: Nama Pengguna: Fitriani</span>
+
+<span class="code-comment">// Objek berlapis (Nested Object)</span>
+<span class="code-keyword">let</span> <span class="code-variable">infoKontak</span> = {
+    <span class="code-property">email</span>: <span class="code-string">"fitriani@example.com"</span>,
+    <span class="code-property">telepon</span>: <span class="code-string">"08123456789"</span>,
+    <span class="code-property">alamat</span>: {
+        <span class="code-property">jalan</span>: <span class="code-string">"Jl. Anggrek No. 5"</span>,
+        <span class="code-property">kota</span>: <span class="code-string">"Bandung"</span>
+    }
+};
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Kota Kontak: ${infoKontak.alamat.kota}`</span>); <span class="code-comment">// Output: Kota Kontak: Bandung</span>
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Tipe data dataPengguna: ${typeof dataPengguna}`</span>); <span class="code-comment">// Output: object</span>
+                </code></pre>
+
+                <h4>Tipe Data: Null (Kosong yang Disengaja)</h4>
+                <p>Menunjukkan ketiadaan nilai secara sengaja.</p>
+                <pre><code class="language-js">
+<span class="code-keyword">let</span> <span class="code-variable">selectedItem</span> = <span class="code-keyword">null</span>; <span class="code-comment">// Variabel sengaja tidak memiliki nilai</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Nilai selectedItem: ${selectedItem}`</span>); <span class="code-comment">// Output: Nilai selectedItem: null</span>
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Tipe data selectedItem: ${typeof selectedItem}`</span>); <span class="code-comment">// Output: object (ini adalah bug historis di JavaScript)</span>
+                </code></pre>
+
+                <h4>Tipe Data: Undefined (Belum Didefinisikan)</h4>
+                <p>Menunjukkan bahwa sebuah variabel telah dideklarasikan tetapi belum diberi nilai, atau properti objek yang tidak ada.</p>
+                <pre><code class="language-js">
+<span class="code-keyword">let</span> <span class="code-variable">variabelTanpaNilai</span>; <span class="code-comment">// Variabel dideklarasikan tanpa inisialisasi</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Nilai variabelTanpaNilai: ${variabelTanpaNilai}`</span>); <span class="code-comment">// Output: Nilai variabelTanpaNilai: undefined</span>
+
+<span class="code-comment">// Properti objek yang tidak ada</span>
+<span class="code-keyword">let</span> <span class="code-variable">objekKosong</span> = {};
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Properti 'nonExistent' di objekKosong: ${objekKosong.nonExistent}`</span>); <span class="code-comment">// Output: Properti 'nonExistent' di objekKosong: undefined</span>
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">`Tipe data variabelTanpaNilai: ${typeof variabelTanpaNilai}`</span>); <span class="code-comment">// Output: undefined</span>
+                </code></pre>
